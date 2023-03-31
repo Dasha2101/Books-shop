@@ -1,0 +1,101 @@
+body{
+    width: 1280px;
+    margin: auto;
+    position: relative;
+
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+.main{
+    width: 1280px;
+    position: relative;
+}
+
+.header{
+    width: 1280px;
+    height: 120px;
+    background-color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-content{
+    width: 1200px;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title{
+    width: 200px;
+    height: 35px;
+    margin: 0 0 0 -68px;
+
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+
+    color: rgba(79, 67, 67, 90%);
+}
+
+.logo-shop{
+    width: 250px;
+    height: 60px;
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+
+.title-shop{
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 35px;
+    text-align: center;
+
+    color: rgb(210,105,30);
+}
+
+.subtitle-logo{
+    font-family: Arial, serif;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+
+    margin: 0 0 0 -67px;
+
+}
+
+.book-page{
+    width: 1280px;
+    height: 1340px;
+    background-color: #F5F5F5
+}
+
+.main-content{
+    width: 1280px;
+    height: 1160px;
+
+    display: grid;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+
+    gap: 1em;
+
+}
