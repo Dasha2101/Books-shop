@@ -91,11 +91,102 @@ body{
     width: 1280px;
     height: 1160px;
 
-    display: grid;
+    /* display: grid;
     justify-content: space-around;
     justify-items: center;
-    align-items: center;
+    align-items: center; */
 
     gap: 1em;
+
+}
+
+.book-card{
+    width: 295px;
+    height: 430px;
+    margin: 0;
+
+    background: #FAFAFA;
+    border-radius: 9px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.imgCard{
+    width: 200px;
+    height: 265px;
+    margin: 0 0 5px 0;
+}
+
+.author-book{
+    width: 200px;
+    height: 30px;
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 25px;
+    text-align: center;
+    color: rgba(27, 27, 27, 0.903);
+}
+
+.name-book{
+    width: 240px;
+    height: 45px;
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: center;
+    color: rgba(227, 163, 117, 0.874);
+}
+
+.price-book{
+    width: 56px;
+    height: 22px;
+    margin: 0;
+
+    font-family: Arial, serif;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    color: rgba(27, 27, 27, 0.903);
+}
+
+.section-for-button{
+    width: 240px;
+    height: 34px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.show-more {
+    width: 83px ;
+    height: 30px;
+
+    background: #FAFAFA;
+    border-radius: 100px;
+    border: solid 2px rgba(227, 163, 117, 0.874);
+
+}
+
+.add-bag {
+    width: 83px ;
+    height: 30px;
+
+    background: #FAFAFA;
+    border-radius: 100px;
+    border: solid 2px rgba(227, 163, 117, 0.874);
 
 }

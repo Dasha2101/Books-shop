@@ -65,29 +65,8 @@ function makeHeader() {
     return headerContent
  }
 
-//     let greetings = document.createElement("h1")
-//     greetings.classList.add("header-title")
-//     greetings.innerText = "WELCOME"
+//make content for main page (book)
 
-//     let logoShop = document.createElement("div")
-//     logoShop.classList.add("logo-shop")
-
-//     let titleLogo = document.createElement("h2")
-//     titleLogo.classList.add("title-logo")
-//     titleLogo.innerText = "BOOK SHOP"
-
-//     let subtitleLogo = document.createElement("p")
-//     subtitleLogo.classList.add("subtitle-logo")
-//     subtitleLogo.innerText = "Online book`s store"
-
-//     logoShop.append(titleLogo)
-//     logoShop.append(subtitleLogo)
-
-
-//     headerContent.append(greetings)
-//     headerContent.append(logoShop)
-//     return headerContent
-//  }
 
 function book(){
     let pageBook = document.createElement("section")
@@ -120,22 +99,32 @@ function addBook(book){
     nameBook.innerHTML = book.title
     bookElem.append(nameBook)
 
+    let sectionForButton = document.createElement("div")
+    sectionForButton.classList.add("section-for-button")
+
     let priceBook = document.createElement("p")
     priceBook.classList.add("price-book")
-    priceBook.innerHTML = book.price
-    bookElem.append(priceBook)
+    priceBook.innerHTML = "Price:" +  " " + book.price
+     bookElem.append(priceBook)
 
     let buttonShowMore = document.createElement("button")
     buttonShowMore.classList.add("show-more")
     buttonShowMore.innerText = "Show more"
-    bookElem.append(buttonShowMore)
+    // bookElem.append(buttonShowMore)
 
     let addBookBag = document.createElement("button")
     addBookBag.classList.add("add-bag")
     addBookBag.innerText = "Add bag"
-    bookElem.append(addBookBag)
+    // bookElem.append(addBookBag)
+
+    sectionForButton.append(buttonShowMore)
+    sectionForButton.append(addBookBag)
+
+    bookElem.append(sectionForButton)
 
     return bookElem
 }
+
+
 
 init();
