@@ -1,4 +1,12 @@
 let body = document.querySelector("body");
+let modalWin,
+    showWin,
+    buttonMD,
+    nameBook,
+    modals,
+    buttonSM,
+    overlay,
+    footer
 
 
 function init(){
@@ -6,20 +14,25 @@ function init(){
     let header = makeHeader();
     let mainSection = makeSectionForBook();
     let pageBook = book();
-    let Content = makeHeaderContent();
+    let content = makeHeaderContent();
+    // modalWin = popup();
 
     pageBook.append(mainSection);
 
     main.append(header);
-    header.append(Content);
+    header.append(content);
     main.append(pageBook);
 
-    body.append(main);
+    document.body.append(main);
 
     for (book of books){
         mainSection.append(addBook(book))
-    }
+        mainSection.append(popup(book))
 
+    }
+    buttonSM = document.querySelectorAll(".show-more")
+    modals = document.querySelectorAll(".modal-win")
+    initModalWin()
 }
 
 function makeMain(){
@@ -54,8 +67,6 @@ function makeHeader() {
     title.classList.add("title-shop")
     title.innerText = "BOOK SHOP"
 
-
-
     logoShop.append(subtitleLogo)
     logoShop.append(greetings)
 
@@ -71,7 +82,15 @@ function makeHeader() {
 function book(){
     let pageBook = document.createElement("section")
     pageBook.classList.add('book-page')
+
+    let titlePageBook = document.createElement("section")
+    titlePageBook.classList.add("title-page-book")
+    titlePageBook.innerText = "NEW ARRIVALS"
+
+    pageBook.append(titlePageBook)
+
     return pageBook
+
 }
 
 function makeSectionForBook(){
@@ -94,7 +113,7 @@ function addBook(book){
     authorBook.innerHTML = book.author
     bookElem.append(authorBook)
 
-    let nameBook = document.createElement("h3")
+    nameBook = document.createElement("h3")
     nameBook.classList.add("name-book")
     nameBook.innerHTML = book.title
     bookElem.append(nameBook)
@@ -104,8 +123,8 @@ function addBook(book){
 
     let priceBook = document.createElement("p")
     priceBook.classList.add("price-book")
-    priceBook.innerHTML = "Price:" +  " " + book.price
-     bookElem.append(priceBook)
+    priceBook.innerHTML = "PRICE:" +  " " + book.price
+    bookElem.append(priceBook)
 
     let buttonShowMore = document.createElement("button")
     buttonShowMore.classList.add("show-more")
@@ -115,16 +134,87 @@ function addBook(book){
     let addBookBag = document.createElement("button")
     addBookBag.classList.add("add-bag")
     addBookBag.innerText = "Add bag"
-    // bookElem.append(addBookBag)
+    // bookElem.append(addBookB`ag)
 
     sectionForButton.append(buttonShowMore)
     sectionForButton.append(addBookBag)
 
     bookElem.append(sectionForButton)
 
+    buttonShowMore.addEventListener("click", popup)
+
     return bookElem
 }
 
+function popup(book){
+    modalWin = document.createElement("section")
+    modalWin.classList.add("modal-win")
+
+    let describeBook = document.createElement("p")
+    describeBook.classList.add("describe-book")
+    describeBook.innerHTML = book.description
+
+    // nameBook = document.createElement("h3")
+    // nameBook.classList.add("name-book")
+    // nameBook.innerHTML = book.title
+
+    buttonMD = document.createElement("button")
+    buttonMD.classList.add("modal-button")
+    buttonMD.innerText = "Close"
+    modalWin.append( describeBook, buttonMD)
+
+    buttonMD.addEventListener("click", closeModalWin)
+
+    overlay = document.createElement('section')
+    overlay.classList.add("overlay")
+    // document.body.append(overlay)
+
+    // overlay.addEventListener("click", removeOverlay)
+
+    return modalWin
+}
 
 
-init();
+function initModalWin(){
+    for (let i = 0; i < buttonSM.length; i++){
+        buttonSM.item(i).addEventListener("click", showModalWin(i))
+    }
+}
+
+function showModalWin(id){
+    return function(){
+        modals.item(id).classList.add("show-win")
+        // overlay.classList.add("overlay");
+        document.getElementsByTagName("body")[0].style.overflow = 'hidden';
+    }
+}
+
+function closeModalWin(e){
+    e.target.closest(".show-win").classList.remove("show-win");
+    document.getElementsByTagName("body")[0].style.overflow = 'scroll'
+}
+
+function makeFooter(){
+    footer = document.createElement("footer")
+    footer.classList.add("footer")
+
+    let footerContent = document.createElement("section")
+    footerContent.classList.add("footer-content")
+
+    let contactInfo = document.createElement("section")
+    contactInfo.classList.add("contact-info")
+
+    let phone = document.createElement("a")
+    phone.classList.add("phone-number")
+
+    let email = document.createElement("a")
+    email.classList.add("email")
+
+    let telegram = document.createElement("a")
+    telegram.classList.add("telegram")
+
+    
+
+}
+
+window.onload = init;

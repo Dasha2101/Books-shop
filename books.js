@@ -8,7 +8,7 @@ let books = [{
     {
       "author": "David Herman",
       "imageLink": "imgBook/dHerman.jpeg",
-      "title": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
+      "title": "Effective JavaScript: 68 Specific Ways to Harness  the Power of JavaScript",
       "price": 22,
       "description": "Effective JavaScript is organized around 68 proven approaches for writing better JavaScript, backed by concrete examples. You’ll learn how to choose the right programming style for each project, manage unanticipated problems, and work more successfully with every facet of JavaScript programming from data structures to concurrency"
     },
@@ -48,7 +48,7 @@ let books = [{
       "description": "If you want to learn how to build efficient React applications, this is your book. Ideal for web developers and software engineers who understand how JavaScript, CSS, and HTML work in the browser, this updated edition provides best practices and patterns for writing modern React code. No prior knowledge of React or functional JavaScript is necessary."
     },
     {
-      "author": "Bradley Meck Alex Young and Mike Cantelon",
+      "author": "Bradley Meck Alex Young <br> and Mike Cantelon",
       "imageLink": "imgBook/bMeck.jpeg",
       "title": "Node.js in Action",
       "price": 38,
@@ -57,14 +57,14 @@ let books = [{
     {
       "author": "Kyle Simpson",
       "imageLink": "imgBook/kSimpson.jpeg",
-      "title": "You Don't Know JS Yet: Get Started",
+      "title": "You Don't Know JS Yet:<br> Get Started",
       "price": 26,
       "description": "It seems like there's never been as much widespread desire before for a better way to deeply learn the fundamentals of JavaScript. But with a million blogs, books, and videos out there, just where do you START? Look no further!"
     },
     {
       "author": "John Resig and Bear Bibeault",
       "imageLink": "imgBook/jResig.jpeg",
-      "title": "Secrets of the JavaScript Ninja",
+      "title": "Secrets of the JavaScript <br>Ninja",
       "price": 33,
       "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
     }

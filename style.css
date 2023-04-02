@@ -82,29 +82,46 @@ body{
 }
 
 .book-page{
-    width: 1280px;
-    height: 1340px;
-    background-color: #F5F5F5
+    width: 1320px;
+    height: 1627px;
+    background-color: #F5F5F5;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.title-page-book{
+    width: 260px;
+    height: 35px;
+
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+
+    color: rgba(79, 67, 67, 90%);
 }
 
 .main-content{
-    width: 1280px;
-    height: 1160px;
+    width: 1295px;
+    height: 1462px;
+
 
     display: grid;
-    /* justify-content: space-around;
-    justify-items: center;
-    /* align-items: center;  */
-    /* display: grid; */ 
     grid-template-columns: repeat(4, 312px);
-    grid-template-rows: repeat(4, 465px);
+    grid-template-rows: repeat(3, 485px);
+    justify-items: center;
     gap: 1em;
+
 
 }
 
 .book-card{
     width: 295px;
-    height: 430px;
+    height: 460px;
     margin: 0;
 
     background: #FAFAFA;
@@ -124,8 +141,8 @@ body{
 }
 
 .author-book{
-    width: 200px;
-    height: 30px;
+    width: 230px;
+    height: 40px;
     margin: 0;
 
     font-family: Georgia, serif;
@@ -137,8 +154,8 @@ body{
 }
 
 .name-book{
-    width: 240px;
-    height: 45px;
+    width: 247px;
+    height: 72px;
     margin: 0;
 
     font-family: Georgia, serif;
@@ -150,11 +167,11 @@ body{
 }
 
 .price-book{
-    width: 56px;
+    width: 79px;
     height: 22px;
     margin: 0;
 
-    font-family: Arial, serif;
+    font-family: Georgia, serif;
     font-style: normal;
     font-size: 14px;
     line-height: 25px;
@@ -181,6 +198,12 @@ body{
     border-radius: 100px;
     border: solid 2px rgba(227, 163, 117, 0.874);
 
+    font-family: Arial, serif;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+
 }
 
 .add-bag {
@@ -191,4 +214,65 @@ body{
     border-radius: 100px;
     border: solid 2px rgba(227, 163, 117, 0.874);
 
+    font-family: Arial, serif;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+
+}
+
+.modal-win{
+    display: none;
+}
+
+.show-win{
+    width: 450px;
+    height: 250px;
+    z-index: 2;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: #F5F5F5;
+    border-radius: 9px;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+
+    font-family: 'Georgia', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+
+    color: #000000;
+
+}
+
+.modal-button{
+    width: 83px ;
+    height: 30px;
+
+    background: #FAFAFA;
+    border-radius: 100px;
+    border: solid 2px rgba(227, 163, 117, 0.874);
+
+    font-family: Arial, serif;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+}
+
+.overlay{
+    background: rgba(41, 41, 41, 0.6);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
