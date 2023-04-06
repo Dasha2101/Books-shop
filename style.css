@@ -20,11 +20,84 @@ body{
     height: 120px;
     background-color: #FFFFFF;
 
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
+
+.section-bag{
+    width: 80px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 50px;
+
+
+
+}
+
+.section-bag .list{
+    display: none;
+    min-width: 360px;
+    min-height: 34px;
+    position: fixed;
+    left: 8%;
+
+    background-color: rgba(227, 163, 117, 0.874);
+    border-radius: 9px;
+
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 10px;
+    line-height: 35px;
+    color: rgba(79, 67, 67, 90%);
+}
+
+.section-bag:hover{
+    cursor: pointer;
+}
+
+.bag-for-book{
+    width: 70px;
+    min-height: 20px;
+    background-color: #FFFFFF;
+
+}
+
+.section-bag:hover .list {
+    display: block;
+}
+
+/* img{
+    width: 50px;
+    height: 50px;
+}
+
+img .list{
+    display: none;
+    margin-left: -50px;
+    margin-top: 50px;
+    width: 100px;
+    min-height: 20px;
+    background-color: rgba(227, 163, 117, 0.874);
+}
+
+img:hover .list{
+    display: block;
+} */
+
+/* .list {
+    display: none;
+    margin-left: -50px;
+    margin-top: 50px;
+    width: 100px;
+    min-height: 20px;
+    background-color: rgba(227, 163, 117, 0.874);
+} */
 
 .header-content{
     width: 1200px;
@@ -236,11 +309,12 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background: #F5F5F5;
+    background: rgba(227, 163, 117, 0.874);
+    ;
     border-radius: 9px;
     position: fixed;
-    top: 20%;
-    left: 20%;
+    /* top: 20%;
+    left: 20%; */
 
     font-family: 'Georgia', sans-serif;
     font-style: normal;
@@ -268,11 +342,22 @@ body{
     color: rgba(27, 27, 27, 0.903);
 }
 
-.overlay{
+.button-delete{
+    width: 10px;
+    height: 20px;
+    margin: 0 0 0 25px;
+    text-align: center;
+
+    background: rgba(227, 163, 117, 0.874);
+
+}
+
+/* .overlay{
     background: rgba(41, 41, 41, 0.6);
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-}
+} */
+

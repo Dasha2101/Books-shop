@@ -1,4 +1,5 @@
 let body = document.querySelector("body");
+
 let modalWin,
     showWin,
     buttonMD,
@@ -6,7 +7,15 @@ let modalWin,
     modals,
     buttonSM,
     overlay,
-    footer
+    footer,
+    bagBook,
+    buttonDelete,
+    cart = []
+    drag_id = -1,
+    bagBook
+    // buttonDelete
+    // listId
+
 
 
 function init(){
@@ -25,14 +34,18 @@ function init(){
 
     document.body.append(main);
 
+    let bookId = 0;
+
     for (book of books){
-        mainSection.append(addBook(book))
+        mainSection.append(addBook(book, bookId))
         mainSection.append(popup(book))
+        bookId++
 
     }
     buttonSM = document.querySelectorAll(".show-more")
     modals = document.querySelectorAll(".modal-win")
     initModalWin()
+    makeEventAddBook()
 }
 
 function makeMain(){
@@ -56,6 +69,15 @@ function makeHeader() {
     greetings.classList.add("header-title")
     greetings.innerText = "WELCOME"
 
+    let listId = document.createElement("ul")
+    listId.classList.add("list")
+
+    // buttonDelete = document.createElement("button")
+    // buttonDelete.classList.add("button-delete")
+    // listId.append(buttonDelete)
+
+    headerContent.append(listId);
+
     let logoShop = document.createElement("div")
     logoShop.classList.add("logo-shop")
 
@@ -67,16 +89,49 @@ function makeHeader() {
     title.classList.add("title-shop")
     title.innerText = "BOOK SHOP"
 
+    // bagBook = document.createElement("section")
+    // bagBook.classList.add("bag-for-book")
+    // bagBook.ondrop = drop
+
+    let sectionBag = document.createElement("section")
+    sectionBag.classList.add("section-bag")
+
+
+    bagBook = document.createElement("img")
+    bagBook.src = "free-icon-basket-3081797.png"
+    
+    // bagBook.append(listId)
+
+    bagBook.ondrop = drop
+
+
+
+    // bagBook.addEventListener("click", showList)
+
+    bagBook.addEventListener("dragover", (event) => {
+        event.preventDefault();
+      });
+
+
+    headerContent.append(bagBook)
+
     logoShop.append(subtitleLogo)
     logoShop.append(greetings)
 
     headerContent.append(title)
     headerContent.append(logoShop)
+    sectionBag.append(listId)
+    sectionBag.append(bagBook)
+    headerContent.append(sectionBag)
 
     return headerContent
  }
 
-//make content for main page (book)
+//  function showList(){
+//     let listId = document.querySelectorAll(".list")
+
+//  }
+
 
 
 function book(){
@@ -99,13 +154,18 @@ function makeSectionForBook(){
     return sectionElem
 }
 
-function addBook(book){
+function addBook(book, bookId){
     let bookElem = document.createElement("section")
     bookElem.classList.add("book-card")
+
+    bookElem.draggable = true
+
+    bookElem.dataset.bookId = bookId
 
     let imgBook = document.createElement("img")
     imgBook.classList.add("imgCard")
     imgBook.setAttribute('src', book.imageLink)
+    imgBook.draggable = false
     bookElem.append(imgBook);
 
     let authorBook = document.createElement("h5")
@@ -142,6 +202,9 @@ function addBook(book){
     bookElem.append(sectionForButton)
 
     buttonShowMore.addEventListener("click", popup)
+
+    bookElem.ondragstart = drag;
+
 
     return bookElem
 }
@@ -194,27 +257,113 @@ function closeModalWin(e){
     document.getElementsByTagName("body")[0].style.overflow = 'scroll'
 }
 
-function makeFooter(){
-    footer = document.createElement("footer")
-    footer.classList.add("footer")
+// function makeFooter(){
+//     footer = document.createElement("footer")
+//     footer.classList.add("footer")
 
-    let footerContent = document.createElement("section")
-    footerContent.classList.add("footer-content")
+//     let footerContent = document.createElement("section")
+//     footerContent.classList.add("footer-content")
 
-    let contactInfo = document.createElement("section")
-    contactInfo.classList.add("contact-info")
+//     let contactInfo = document.createElement("section")
+//     contactInfo.classList.add("contact-info")
 
-    let phone = document.createElement("a")
-    phone.classList.add("phone-number")
+//     let phone = document.createElement("a")
+//     phone.classList.add("phone-number")
 
-    let email = document.createElement("a")
-    email.classList.add("email")
+//     let email = document.createElement("a")
+//     email.classList.add("email")
 
-    let telegram = document.createElement("a")
-    telegram.classList.add("telegram")
+//     let telegram = document.createElement("a")
+//     telegram.classList.add("telegram")
 
-    
+// }
+
+function makeEventAddBook(){
+    let allButton = document.querySelectorAll(".add-bag")
+        for (let elem of allButton){
+            let card = elem.closest(".book-card")
+            elem.addEventListener("click", (e) => {
+                let card_id = card.dataset.bookId
+                cart.push(card_id)
+                renderCart()
+
+            })
+        }
+
+    }
+
+function allowDrop(e){
+    e.preventDefault();
+}
+
+function drag  (e){
+    e.dataTransfer.setData("id", e.target.dataset.bookId)
+    console.log(e.target)
+    e.target.classList.add('over');
+}
+
+function drop(e) {
+    let itemId = e.dataTransfer.getData("id")
+    console.log("dkm")
+    cart.push(itemId)
+    renderCart()
+    e.target.classList.add('over');
 
 }
+
+
+function renderCart(){
+    let list = document.querySelector(".list")
+    
+    buttonDelete = document.createElement("button")
+    buttonDelete.classList.add("button-delete")
+    buttonDelete.innerText = "X"
+
+    let summa = 0
+    // books.forEach(e => summa += Number.parseFloat(e.price))
+    list.innerHTML = ' ';
+    let index = 0
+    for (elem of cart){
+ 
+        let itemWraper = document.createElement("section")
+        itemWraper.classList.add("text-wraprt")
+        itemWraper.innerText =  books[elem].author
+        let buttonDelete = document.createElement("button")
+        buttonDelete.classList.add("button-delete")
+        buttonDelete.innerText = "X"
+        let titleBook = document.createElement("section")
+        titleBook.innerText = books[elem].title
+
+
+
+        buttonDelete.onclick = () => {
+            console.log(cart)
+
+            cart.splice(index, 1)
+            renderCart()
+        }
+
+       
+        itemWraper.append(buttonDelete)
+        itemWraper.append(titleBook)
+        list.append(itemWraper)
+        let price = document.createElement("section")
+        price.innerText = "Price:" + " " + books[elem].price
+        summa +=  books[elem].price
+        itemWraper.append(price)
+        // index++
+    
+    //     list.innerHTML += ("<li>" + " " + "<b>Author:</b>"  + books[elem].author + " " + "<button>X</button>" + "<br>" + 
+    //  "<b>title:</b>" + " " + books[elem].title + "<br>" + "<b>price:</b>" + books[elem].price + "<br>" )
+    }
+    let Allprice = document.createElement("section")
+    Allprice.innerText = "Total of money:" + " " + summa
+    list.append(Allprice)
+
+}
+
+
+
+
 
 window.onload = init;
