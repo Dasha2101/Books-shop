@@ -99,7 +99,7 @@ function makeHeader() {
 
     bagBook = document.createElement("img")
     bagBook.src = "free-icon-basket-3081797.png"
-    
+
     // bagBook.append(listId)
 
     bagBook.ondrop = drop
@@ -314,7 +314,7 @@ function drop(e) {
 
 function renderCart(){
     let list = document.querySelector(".list")
-    
+
     buttonDelete = document.createElement("button")
     buttonDelete.classList.add("button-delete")
     buttonDelete.innerText = "X"
@@ -324,7 +324,7 @@ function renderCart(){
     list.innerHTML = ' ';
     let index = 0
     for (elem of cart){
- 
+
         let itemWraper = document.createElement("section")
         itemWraper.classList.add("text-wraprt")
         itemWraper.innerText =  books[elem].author
@@ -343,7 +343,7 @@ function renderCart(){
             renderCart()
         }
 
-       
+
         itemWraper.append(buttonDelete)
         itemWraper.append(titleBook)
         list.append(itemWraper)
@@ -352,7 +352,7 @@ function renderCart(){
         summa +=  books[elem].price
         itemWraper.append(price)
         // index++
-    
+
     //     list.innerHTML += ("<li>" + " " + "<b>Author:</b>"  + books[elem].author + " " + "<button>X</button>" + "<br>" + 
     //  "<b>title:</b>" + " " + books[elem].title + "<br>" + "<b>price:</b>" + books[elem].price + "<br>" )
     }

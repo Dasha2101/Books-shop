@@ -1,3 +1,14 @@
+body{
+    width: 1280px;
+    margin: auto;
+    position: relative;
+}
+
+.main{
+    width: 1280px;
+    position: relative;
+}
+
 .secForDelivery{
     width: 1000px;
     height: 500px;
@@ -5,10 +16,14 @@
     justify-content: space-around;
 }
 
-/* .secPersonalData{
+.form-action{
+    width: 1000px;
+    height: 500px;
     display: flex;
     justify-content: space-around;
-} */
+}
+
+
 
 .secPersonalData{
     display: flex;
@@ -16,33 +31,50 @@
     justify-content: space-around;
 }
 
-.Adress{
+.adress{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+
+    margin: 0 0 25px 0;
+}
+
+.all-choosen{
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
 }
 .pay{
     display: flex;
 }
 
-.name{
-    margin: 0 17px 0 0;
+.name-class{
+    margin: 0 27px 0 0;
 }
 
+.surname{
+    margin: 0 8px 0 0;
+}
+
+
 .street{
-    margin: 0 0 0 55px;
+    margin: 0 18px 0 55px;
 }
 
 .flat-number{
-    margin: 0 0 0 18px;
+    margin: 0 21px 0 0;
 }
 
-.delivery{
-    margin: 0 0 0 61px;
+.delivery-data{
+    margin: 0 24px 0 0px;
+}
+
+.house-num{
+    margin: 0 5px 0 0;
 }
 
 .button-submit{
-    width: 70px;
-    height: 50px;
-    margin: 0 0 0 105px;
+    width: 57px;
+    height: 30px;
+    margin: 0 0 0 222px;
 }
