@@ -7,6 +7,7 @@ let modalWin,
     modals,
     buttonSM,
     overlay,
+    list,
     footer,
     bagBook,
     buttonDelete,
@@ -313,7 +314,7 @@ function drop(e) {
 
 
 function renderCart(){
-    let list = document.querySelector(".list")
+    list = document.querySelector(".list")
 
     buttonDelete = document.createElement("button")
     buttonDelete.classList.add("button-delete")
@@ -334,6 +335,10 @@ function renderCart(){
         let titleBook = document.createElement("section")
         titleBook.innerText = books[elem].title
 
+        let imgSec = document.createElement("img")
+        imgSec.classList.add("imgCardForBag")
+        imgSec.setAttribute('src', books[elem].imageLink)
+
 
 
         buttonDelete.onclick = () => {
@@ -343,7 +348,7 @@ function renderCart(){
             renderCart()
         }
 
-
+        itemWraper.append(imgSec)
         itemWraper.append(buttonDelete)
         itemWraper.append(titleBook)
         list.append(itemWraper)
@@ -358,8 +363,18 @@ function renderCart(){
     }
     let Allprice = document.createElement("section")
     Allprice.innerText = "Total of money:" + " " + summa
-    list.append(Allprice)
 
+    let buttonCreateOrder = document.createElement("button")
+    buttonCreateOrder.classList.add("button-order")
+    buttonCreateOrder.addEventListener("click", createOrder)
+
+    list.append(Allprice)
+    list.append(buttonCreateOrder)
+}
+
+function createOrder(){
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "delivery.html"
 }
 
 

@@ -10,10 +10,12 @@ body{
 }
 
 .secForDelivery{
-    width: 1000px;
     height: 500px;
+
     display: flex;
     justify-content: space-around;
+
+    border: solid 2px black
 }
 
 .form-action{
@@ -78,3 +80,79 @@ body{
     height: 30px;
     margin: 0 0 0 222px;
 }
+
+.invalid{
+    border: 2px red solid;
+}
+
+input[type='radio'].invalid{
+    outline: 1px solid red;
+    /* border: 6px solid red; */
+}
+
+table {
+    font-family: "Georgia", Sans-Serif;
+    font-size: 14px;
+    border-radius: 10px;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.section-for-book{
+    min-width: 200px;
+    min-height: 500px;
+    background: #FAFAFA;
+    border-radius: 9px;
+    margin-bottom: 90px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.imgCard{
+    width: 150px;
+    height: 200px;
+}
+
+.text-wraprt{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+ 
+
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+
+    color: rgba(79, 67, 67, 90%);
+}
+
+.button-delete{
+    width: 30px ;
+    height: 30px;
+
+    background: #FAFAFA;
+    border-radius: 100px;
+    border: solid 2px rgba(227, 163, 117, 0.874);
+
+    font-family: Arial, serif;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+}
+
+.author-book{
+    width: 173px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+

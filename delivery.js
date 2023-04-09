@@ -8,11 +8,20 @@ let Yname,
     inputHouseNum,
     inputFlat,
     buttonSubmit,
-    redLigth
+    inputForPackGift,
+    inputForSale,
+    inputForPostcard,
+    inputForPen,
+    buttonDelete,
+    redLigth,
+    inputForCard,
+    cart = [],
+    inputForCash,
+    typeOfPay
 
 function init(){
     makeMainContent();
-    // validation();
+    cart = localStorage.getItem('cart', [])
 
 }
 
@@ -57,7 +66,7 @@ function makeMainContent(){
     secForSurname.append(inputForSurname)
 
     //3
-    let typeOfPay = document.createElement("section")
+    typeOfPay = document.createElement("section")
 
     let title = document.createElement("p")
     title.innerText = "Payment type"
@@ -71,10 +80,11 @@ function makeMainContent(){
     // choosenCard.setAttribute("for", "pay")
     choosenCard.innerText = 'Card'
 
-    let inputForCard = document.createElement("input")
+    inputForCard = document.createElement("input")
     inputForCard.setAttribute("type", "radio")
     inputForCard.setAttribute("value", "card")
     inputForCard.setAttribute("name", "pay")
+    inputForCard.checked = false
 
 
     cardChoosen.append(choosenCard)
@@ -86,10 +96,11 @@ function makeMainContent(){
     // choosenCash.setAttribute("for", "pay")
     choosenCash.innerText = 'Cash'
 
-    let inputForCash = document.createElement("input")
+    inputForCash = document.createElement("input")
     inputForCash.setAttribute("type", "radio")
     inputForCash.setAttribute("value", "cash")
     inputForCash.setAttribute("name", "pay")
+    inputForCash.checked = false
 
 
     cashChoosen.append(choosenCash)
@@ -115,8 +126,8 @@ function makeMainContent(){
     presentPackGift.setAttribute("for", "pack as a gift")
     presentPackGift.innerText = "pack as a gift"
 
-    let inputForPackGift = document.createElement("input")
-    inputForPackGift.setAttribute("type", "checkbox")
+    inputForPackGift = document.createElement("input")
+    inputForPackGift.setAttribute("type", "hidden")
     inputForPackGift.setAttribute("name", "pack as a gift")
 
     secPackGift.append(presentPackGift)
@@ -129,8 +140,8 @@ function makeMainContent(){
     presentPostcard.setAttribute("for", "add postcard")
     presentPostcard.innerText = "add postcard"
 
-    let inputForPostcard = document.createElement("input")
-    inputForPostcard.setAttribute("type", "checkbox")
+    inputForPostcard = document.createElement("input")
+    inputForPostcard.setAttribute("type", "hidden")
     inputForPostcard.setAttribute("name", "add postcard")
 
     secPostcard.append(presentPostcard)
@@ -143,8 +154,8 @@ function makeMainContent(){
     presentSale.setAttribute("for", "provide 2% discount to the next time")
     presentSale.innerText = "provide 2% discount to the next time"
 
-    let inputForSale = document.createElement("input")
-    inputForSale.setAttribute("type", "checkbox")
+    inputForSale = document.createElement("input")
+    inputForSale.setAttribute("type", "hidden")
     inputForSale.setAttribute("name", "provide 2% discount to the next time")
 
     secSale.append(presentSale)
@@ -158,8 +169,8 @@ function makeMainContent(){
     presentPen.setAttribute("for", "branded pen or pencil")
     presentPen.innerText = "branded pen or pencil"
 
-    let inputForPen = document.createElement("input")
-    inputForPen.setAttribute("type", "checkbox")
+    inputForPen = document.createElement("input")
+    inputForPen.setAttribute("type", "hidden")
     inputForPen.setAttribute("name", "branded pen or pencil")
 
     secPen.append(presentPen)
@@ -219,8 +230,8 @@ function makeMainContent(){
     labelNumHouse.innerText = "House`s number"
 
     inputHouseNum = document.createElement("input")
-    inputHouseNum.setAttribute("type", "number")
-    inputHouseNum.setAttribute("min", "0")
+    // inputHouseNum.setAttribute("type", "number")
+    // inputHouseNum.setAttribute("min", "0")
 
     numHouse.append(labelNumHouse)
     numHouse.append(inputHouseNum)
@@ -264,12 +275,9 @@ function makeMainContent(){
     formAction.append(sectionPerData)
     formAction.append(adress)
 
-    // let randomInput = document.createElement("input")
-    // randomInput.setAttribute("type", "number")
-    // formAction.append(randomInput)
-
     error = document.createElement("section")
     error.setAttribute("id", "error")
+    renderCart()
 //
     formAction.append(error)
     formAction.addEventListener("blur", validation, true)
@@ -285,25 +293,65 @@ function validation(e){
     let regSurname = /^[a-z]{5,}$/gi
     let regStreet = /^[a-z\d\s]{5,}$/gi
     let regFlatNum = /^\d+-*\d*$/gi
+    let regHouseNum = /^[\d]{0,}$/gi
+
 
     if (!regName.test(inputForName.value)) {
         messages.push("Error")
+        if (!inputForName.classList.contains("invalid")){
+            inputForName.classList.add("invalid")
+        }
+
         // error.innerText = messeges.join(", ")
+    } else {
+        if (inputForName.classList.contains("invalid")){
+            inputForName.classList.remove("invalid")
+        }
     }
     if (!regSurname.test(inputForSurname.value)) {
         messages.push("Error")
+        if (!inputForSurname.classList.contains("invalid")){
+            inputForSurname.classList.add("invalid")
+        }
+    } else {
+        if (inputForSurname.classList.contains("invalid")){
+            inputForSurname.classList.remove("invalid")
+        }
     }
+
     if (!regStreet.test(inputStreet.value)) {
         messages.push("Error")
-    }
+        if (!inputStreet.classList.contains("invalid")){
+            inputStreet.classList.add("invalid")
+        }
 
-    if (Number(inputHouseNum.value) < 0){
-        messages.push("Error")
+    } else {
+        if (inputStreet.classList.contains("invalid")){
+            inputStreet.classList.remove("invalid")
     }
+}
 
-    if (!regFlatNum.test(inputFlat.value)){
+    if (!regHouseNum.test(Number(inputHouseNum.value)) || inputHouseNum.value == ""){
         messages.push("Error")
+        if (!inputHouseNum.classList.contains("invalid")){
+            inputHouseNum.classList.add("invalid")
+        }
+    } else {
+        if (inputHouseNum.classList.contains("invalid")){
+            inputHouseNum.classList.remove("invalid")
     }
+}
+
+    if (!regFlatNum.test(inputFlat.value) || inputFlat.value ==""){
+        messages.push("Error")
+        if (!inputFlat.classList.contains("invalid")){
+            inputFlat.classList.add("invalid")
+        }
+    } else {
+        if (inputFlat.classList.contains("invalid")){
+            inputFlat.classList.remove("invalid")
+    }
+}
 
     if (!messages.includes("Error")){
         buttonSubmit.disabled = false
@@ -312,7 +360,64 @@ function validation(e){
     console.log(messages)
     // e.preventDefault()
 }
-    
+
+function renderCart(){
+
+    let secForBook = document.createElement("section")
+    secForBook.classList.add("section-for-book")
+    document.body.append(secForBook)
+
+    cart = JSON.parse(localStorage.getItem("cart"))
+
+    let Allprice = 0
+    let index = 0
+    for (book of cart){
+
+    let itemWraper = document.createElement("section")
+    itemWraper.classList.add("text-wraprt")
+    // console.log(books[book])
+
+    let imgSec = document.createElement("img")
+    imgSec.classList.add("imgCard")
+    imgSec.setAttribute('src', books[book].imageLink)
+
+    buttonDelete = document.createElement("button")
+    buttonDelete.classList.add("button-delete")
+    buttonDelete.innerText = "X"
+
+    let authorBook = document.createElement("section")
+    authorBook.classList.add("author-book")
+    authorBook.innerText +=  books[book].author
+
+    let titleBook = document.createElement("section")
+    titleBook.classList.add("title-author")
+    titleBook.innerText += books[book].title
+
+    let priceBook = document.createElement("section")
+    priceBook.innerText += "Price:" + " " + books[book].price
+
+
+    buttonDelete.onclick = () => {
+        console.log(cart)
+
+        cart.splice(index, 1)
+        localStorage.setItem("cart", cart)
+        // renderCart()
+    }
+
+    Allprice += books[book].price
+    authorBook.append(buttonDelete)
+
+    itemWraper.append(authorBook)
+    itemWraper.append(imgSec)
+    itemWraper.append(priceBook)
+    itemWraper.append(titleBook)
+    secForBook.append(itemWraper)
+}
+    secForBook.innerHTML += "Total:" + " " +`${Allprice}`
+    cart = sessionStorage.setItem("cart", "")
+}
+
 
 
 
