@@ -258,27 +258,6 @@ function closeModalWin(e){
     document.getElementsByTagName("body")[0].style.overflow = 'scroll'
 }
 
-// function makeFooter(){
-//     footer = document.createElement("footer")
-//     footer.classList.add("footer")
-
-//     let footerContent = document.createElement("section")
-//     footerContent.classList.add("footer-content")
-
-//     let contactInfo = document.createElement("section")
-//     contactInfo.classList.add("contact-info")
-
-//     let phone = document.createElement("a")
-//     phone.classList.add("phone-number")
-
-//     let email = document.createElement("a")
-//     email.classList.add("email")
-
-//     let telegram = document.createElement("a")
-//     telegram.classList.add("telegram")
-
-// }
-
 function makeEventAddBook(){
     let allButton = document.querySelectorAll(".add-bag")
         for (let elem of allButton){
@@ -339,8 +318,6 @@ function renderCart(){
         imgSec.classList.add("imgCardForBag")
         imgSec.setAttribute('src', books[elem].imageLink)
 
-
-
         buttonDelete.onclick = () => {
             console.log(cart)
 
@@ -373,7 +350,7 @@ function renderCart(){
 }
 
 function createOrder(){
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify({list:cart}));
     window.location.href = "delivery.html"
 }
 

@@ -10,18 +10,35 @@ let Yname,
     buttonSubmit,
     inputForPackGift,
     inputForSale,
+    secForPresent,
     inputForPostcard,
     inputForPen,
     buttonDelete,
+    dataDeliver,
+    title,
+    street,
+    houseNumber,
+    flatNumber,
+    customer,
     redLigth,
+    secError,
+    errorForSurname,
+    windowOrder,
+    inputForDataDeliv,
+    secForname,
+    secForSurname,
     inputForCard,
+    messages = [],
     cart = [],
+    errorArr = [],
     inputForCash,
     typeOfPay
 
 function init(){
     makeMainContent();
-    cart = localStorage.getItem('cart', [])
+    cart = JSON.parse(localStorage.getItem('cart'))
+    popupOrder()
+
 
 }
 
@@ -35,7 +52,9 @@ function makeMainContent(){
     sectionPerData.classList.add("secPersonalData")
 
     //1
-    let secForname = document.createElement("section")
+    secForname = document.createElement("section")
+    secForname.classList.add("section-input")
+    secForname.setAttribute("id", "sec-name")
 
     Yname = document.createElement("label")
     // name.setAttribute("id", "name")
@@ -48,11 +67,13 @@ function makeMainContent(){
     inputForName.setAttribute("type", "text")
     // inputForName.setAttribute("pattern", "[a-z]+")
 
+
     secForname.append(Yname)
     secForname.append(inputForName)
 
     //2
-    let secForSurname = document.createElement("section")
+    secForSurname = document.createElement("section")
+    secForSurname.classList.add("section-input")
 
     surname = document.createElement("label")
     surname.classList.add("surname")
@@ -103,6 +124,7 @@ function makeMainContent(){
     inputForCash.checked = false
 
 
+
     cashChoosen.append(choosenCash)
     cashChoosen.append(inputForCash)
 
@@ -114,70 +136,30 @@ function makeMainContent(){
     typeOfPay.append(allChoosen)
 
     //4
-    let secForPresent = document.createElement("section")
+    secForPresent = document.createElement("select")
+    secForPresent.setAttribute("multiple", "multiple")
 
-    let titlePresent = document.createElement("p")
-    titlePresent.innerText = "Choose 2 gifts:"
+    secForPresent.addEventListener("change", checkSelect)
 
-    //4.1 (first present)
-    let secPackGift = document.createElement("section")
+    let secPackGift = document.createElement("option")
+    secPackGift.setAttribute("value", "pack")
+    secPackGift.innerText = "pack as a gift"
 
-    let presentPackGift = document.createElement("label")
-    presentPackGift.setAttribute("for", "pack as a gift")
-    presentPackGift.innerText = "pack as a gift"
-
-    inputForPackGift = document.createElement("input")
-    inputForPackGift.setAttribute("type", "hidden")
-    inputForPackGift.setAttribute("name", "pack as a gift")
-
-    secPackGift.append(presentPackGift)
-    secPackGift.append(inputForPackGift)
-
-    //4.2
-    let secPostcard = document.createElement("section")
-
-    let presentPostcard = document.createElement("label")
-    presentPostcard.setAttribute("for", "add postcard")
-    presentPostcard.innerText = "add postcard"
-
-    inputForPostcard = document.createElement("input")
-    inputForPostcard.setAttribute("type", "hidden")
-    inputForPostcard.setAttribute("name", "add postcard")
-
-    secPostcard.append(presentPostcard)
-    secPostcard.append(inputForPostcard)
+    let secPostcard = document.createElement("option")
+    secPostcard.setAttribute("value", "postcard")
+    secPostcard.innerText = "add postcard"
 
     //4.3
-    let secSale = document.createElement("section")
-
-    let presentSale = document.createElement("label")
-    presentSale.setAttribute("for", "provide 2% discount to the next time")
-    presentSale.innerText = "provide 2% discount to the next time"
-
-    inputForSale = document.createElement("input")
-    inputForSale.setAttribute("type", "hidden")
-    inputForSale.setAttribute("name", "provide 2% discount to the next time")
-
-    secSale.append(presentSale)
-    secSale.append(inputForSale)
-
+    let secSale = document.createElement("option")
+    secSale.setAttribute("value", "sale")
+    secSale.innerText = "provide 2% discount to the next time"
 
     //4.4
-    let secPen = document.createElement("section")
+    let secPen = document.createElement("option")
+    secPen.setAttribute("value", "pen")
+    secPen.innerText = "branded pen or pencil"
 
-    let presentPen = document.createElement("label")
-    presentPen.setAttribute("for", "branded pen or pencil")
-    presentPen.innerText = "branded pen or pencil"
-
-    inputForPen = document.createElement("input")
-    inputForPen.setAttribute("type", "hidden")
-    inputForPen.setAttribute("name", "branded pen or pencil")
-
-    secPen.append(presentPen)
-    secPen.append(inputForPen)
     //
-    secForPresent.append(titlePresent)
-
     secForPresent.append(secPackGift)
     secForPresent.append(secPostcard)
     secForPresent.append(secSale)
@@ -195,7 +177,7 @@ function makeMainContent(){
     adress.classList.add("adress")
 
     //1
-    let dataDeliver = document.createElement("section")
+    dataDeliver = document.createElement("section")
     dataDeliver.classList.add("delivery")
 
     let labelDataDeliv = document.createElement("label")
@@ -203,8 +185,10 @@ function makeMainContent(){
     labelDataDeliv.setAttribute("for", "date")
     labelDataDeliv.innerText = "Delivery date"
 
-    let inputForDataDeliv = document.createElement("input")
+    inputForDataDeliv = document.createElement("input")
     inputForDataDeliv.setAttribute("type", "date")
+    inputForDataDeliv.setAttribute("min", "11-04-2023")
+    // inputForDataDeliv.setAttribute("value", "21.01.2002")
 
     dataDeliver.append(labelDataDeliv)
     dataDeliver.append(inputForDataDeliv)
@@ -254,8 +238,10 @@ function makeMainContent(){
     buttonSubmit = document.createElement("button")
     buttonSubmit.innerText = "Submit"
     buttonSubmit.classList.add("button-submit")
-    buttonSubmit.setAttribute("type", "submit")
+    buttonSubmit.setAttribute("type", "button")
     buttonSubmit.disabled = true
+    // buttonSubmit.addEventListener("click", makeButtonAvaluable)
+
 
     //Add all section in Adress
     adress.append(dataDeliver)
@@ -275,89 +261,145 @@ function makeMainContent(){
     formAction.append(sectionPerData)
     formAction.append(adress)
 
-    error = document.createElement("section")
-    error.setAttribute("id", "error")
     renderCart()
-//
-    formAction.append(error)
-    formAction.addEventListener("blur", validation, true)
+
+    secError = document.createElement("p")
+    secError.classList.add("show-error")
+    sectionForDelivery.append(secError)
+    // errorForSurname = document.createElement("p")
+    // // secError.innerHTML = "Please enter a valid name"
+    // errorArr = ["Please enter a valid name", "Please enter a valid surname" , ""]
+
+    formAction.addEventListener("blur", validBlur, true)
+
 
     sectionForDelivery.append(formAction)
+
     document.body.append(sectionForDelivery);
 
 }
 
-function validation(e){
-    let messages = []
+function validationName(e){
     let regName = /^[a-z]{4,}$/gi
-    let regSurname = /^[a-z]{5,}$/gi
-    let regStreet = /^[a-z\d\s]{5,}$/gi
-    let regFlatNum = /^\d+-*\d*$/gi
-    let regHouseNum = /^[\d]{0,}$/gi
 
+        if (!regName.test(inputForName.value)) {
+            messages.push("Error 1")
+            // error.append(messages)
+            if (!inputForName.classList.contains("invalid") && (inputForName == e.target)){
+                inputForName.classList.add("invalid")
+                secError.innerHTML = 'Please enter a valid name'
+            }
+        } else {
+                if (inputForName.classList.contains("invalid")){
+                    inputForName.classList.remove("invalid")
+                    secError.innerHTML = ''
 
-    if (!regName.test(inputForName.value)) {
-        messages.push("Error")
-        if (!inputForName.classList.contains("invalid")){
-            inputForName.classList.add("invalid")
-        }
-
-        // error.innerText = messeges.join(", ")
-    } else {
-        if (inputForName.classList.contains("invalid")){
-            inputForName.classList.remove("invalid")
         }
     }
+
+}
+
+
+
+function validationSurname(e){
+    let regSurname = /^[a-z]{5,}$/gi
     if (!regSurname.test(inputForSurname.value)) {
-        messages.push("Error")
-        if (!inputForSurname.classList.contains("invalid")){
+        messages.push("Error 2")
+        //errorForSurname.innerHTML = "Please enter a valid Surname"
+        // secForSurname.append(errorForSurname)
+        if (!inputForSurname.classList.contains("invalid") && (inputForSurname == e.target)){
             inputForSurname.classList.add("invalid")
-        }
+            // errorForSurname.innerHTML = "Please enter a valid Surname"
+            secError.innerHTML = 'Please enter a valid surname'
+            console.log(e.target)
+    }
     } else {
         if (inputForSurname.classList.contains("invalid")){
             inputForSurname.classList.remove("invalid")
+            secError.innerHTML = ''
+            // errorForSurname.remove()
         }
-    }
 
+    }
+}
+
+
+function validationStreet (e){
+    let regStreet = /^[a-z\d\s]{5,}$/gi
     if (!regStreet.test(inputStreet.value)) {
-        messages.push("Error")
-        if (!inputStreet.classList.contains("invalid")){
+        messages.push("Error 3")
+        if (!inputStreet.classList.contains("invalid") && (inputStreet == e.target)){
             inputStreet.classList.add("invalid")
+            secError.innerHTML = 'Please enter a valid street'
         }
 
     } else {
         if (inputStreet.classList.contains("invalid")){
             inputStreet.classList.remove("invalid")
+            secError.innerHTML = ''
+        }
     }
 }
 
+function validationHouse (e){
+    let regHouseNum = /^[\d]{0,}$/gi
+
     if (!regHouseNum.test(Number(inputHouseNum.value)) || inputHouseNum.value == ""){
-        messages.push("Error")
-        if (!inputHouseNum.classList.contains("invalid")){
+        messages.push("Error 4")
+        if (!inputHouseNum.classList.contains("invalid") && (inputHouseNum == e.target)){
             inputHouseNum.classList.add("invalid")
+            secError.innerHTML = 'Please enter a valid house'
         }
     } else {
         if (inputHouseNum.classList.contains("invalid")){
             inputHouseNum.classList.remove("invalid")
+            secError.innerHTML = ''
+        }
     }
 }
 
-    if (!regFlatNum.test(inputFlat.value) || inputFlat.value ==""){
-        messages.push("Error")
-        if (!inputFlat.classList.contains("invalid")){
-            inputFlat.classList.add("invalid")
+function validationFlat (e){
+        let regFlatNum = /^\d+-*\d*$/g
+        let check = regFlatNum.test(inputFlat.value)
+        if (!check){
+            // console.log(inputFlat.value)
+            messages.push("Error 5")
+            if (!inputFlat.classList.contains("invalid") && (inputFlat == e.target)){
+                inputFlat.classList.add("invalid")
+                secError.innerHTML = 'Please enter a valid flat'
         }
     } else {
+        console.log(inputFlat.value)
         if (inputFlat.classList.contains("invalid")){
             inputFlat.classList.remove("invalid")
+            secError.innerHTML = ''
+        }
     }
 }
 
-    if (!messages.includes("Error")){
+function validationDate (e){
+    let a = new Date()
+    let date = inputForDataDeliv.value.split('-')
+    if ((String(a.getFullYear() == date[0]) && String(a.getMonth() == date[1]) && String(a.getDate() + 1) > date[2]  || date[0] == [] || date[1] == []  || date ==[])) {
+        messages.push("Error 6")
+        if (!inputForDataDeliv.classList.contains("invalid") && (inputForDataDeliv == e.target)){
+            inputForDataDeliv.classList.add("invalid")
+            secError.innerHTML = 'Please enter a valid data'
+    }
+        } else {
+              if (inputForDataDeliv.classList.contains("invalid")){
+                inputForDataDeliv.classList.remove("invalid")
+                secError.innerHTML = ''
+        }
+    }
+}
+
+function makeButtonAvaluable (){
+    if (!messages.length){
         buttonSubmit.disabled = false
+        buttonSubmit.addEventListener("click", setData)
     }
 
-    console.log(messages)
     // e.preventDefault()
 }
 
@@ -365,14 +407,11 @@ function renderCart(){
 
     let secForBook = document.createElement("section")
     secForBook.classList.add("section-for-book")
-    document.body.append(secForBook)
-
+    document.body.prepend(secForBook)
     cart = JSON.parse(localStorage.getItem("cart"))
 
     let Allprice = 0
-    let index = 0
-    for (book of cart){
-
+    cart.list.forEach((book, index) => {
     let itemWraper = document.createElement("section")
     itemWraper.classList.add("text-wraprt")
     // console.log(books[book])
@@ -394,15 +433,14 @@ function renderCart(){
     titleBook.innerText += books[book].title
 
     let priceBook = document.createElement("section")
-    priceBook.innerText += "Price:" + " " + books[book].price
+    priceBook.innerText += `Price:"  ${books[book].price}`
 
 
     buttonDelete.onclick = () => {
-        console.log(cart)
-
-        cart.splice(index, 1)
-        localStorage.setItem("cart", cart)
-        // renderCart()
+        cart.list.splice(index, 1)
+        localStorage.setItem("cart", JSON.stringify(cart))
+        secForBook.remove()
+        renderCart()
     }
 
     Allprice += books[book].price
@@ -413,11 +451,85 @@ function renderCart(){
     itemWraper.append(priceBook)
     itemWraper.append(titleBook)
     secForBook.append(itemWraper)
-}
-    secForBook.innerHTML += "Total:" + " " +`${Allprice}`
-    cart = sessionStorage.setItem("cart", "")
+})
+    let totalPrice = document.createElement('span')
+    totalPrice.innerText = `Total: ${Allprice}`
+    secForBook.append(totalPrice)
 }
 
+function checkSelect(e){
+    let count = 0
+    let options = Array.from(secForPresent.children)
+    // console.log(secForPresent.children)
+    options.forEach(option => {
+      if (option.selected) count ++
+    } )
+    if (count > 2){
+        options.forEach(option => {
+            option.selected = false
+        })
+    }
+
+}
+
+function popupOrder(){
+    windowOrder = document.createElement("section")
+    // windowOrder.classList.add("show-window")
+
+    title = document.createElement("p")
+
+    street = document.createElement("section")
+    houseNumber = document.createElement("section")
+    flatNumber = document.createElement("section")
+    customer = document.createElement("section")
+
+    deleteButton = document.createElement("button")
+
+    windowOrder.append(title)
+    windowOrder.append(street)
+    windowOrder.append(houseNumber)
+    windowOrder.append(flatNumber)
+    windowOrder.append(customer)
+    windowOrder.append(deleteButton)
+
+
+    document.body.append(windowOrder)
+
+
+}
+
+function setData(){
+    title.innerText = "Create order"
+    street.innerHTML = `Delivery address: ${inputStreet.value}`
+    houseNumber.innerHTML = `house:  ${inputHouseNum.value}`
+    flatNumber.innerHTML = `flat:  ${inputFlat.value}`
+    customer.innerHTML = `custumer: ${inputForName.value}  ${inputForSurname.value}`
+    console.log(title)
+    showWin()
+}
+
+
+
+
+
+
+
+function validBlur(e){
+    messages = []
+    validationName(e)
+    validationSurname(e)
+    validationStreet(e)
+    validationHouse(e)
+    validationFlat(e)
+    validationDate(e)
+    makeButtonAvaluable ()
+    console.log(messages)
+}
+
+function showWin(){
+    windowOrder.classList.add("show-window")
+
+}
 
 
 

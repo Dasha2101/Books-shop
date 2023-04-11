@@ -14,7 +14,8 @@ body{
 
     display: flex;
     justify-content: space-around;
-
+    flex-direction: column-reverse;
+    align-items: center;
     border: solid 2px black
 }
 
@@ -149,10 +150,51 @@ table {
 
 .author-book{
     width: 173px;
-    
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
+.window-order{
+    display: none;
+}
+
+.show-window{
+    width: 450px;
+    height: 250px;
+    z-index: 2;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: rgba(227, 163, 117, 0.874);
+    ;
+    border-radius: 9px;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+
+    font-family: 'Georgia', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+
+    color: #000000;
+
+}
+
+
+.show-error{
+    display: block;
+}
+/* 
+.section-input{
+    height: 71px;
+
+} */
