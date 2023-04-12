@@ -1,9 +1,3 @@
-/* @import compass
-
-red: rgba(255,74,86,1);
-.transition
-@include transition(all 0.25s cubic-bezier(.53,.01,.35,1.5)) */
-
 body{
     width: 1280px;
     margin: auto;
@@ -34,8 +28,6 @@ body{
     justify-content: space-around;
 }
 
-
-
 .secPersonalData{
     display: flex;
     flex-direction: column;
@@ -57,31 +49,6 @@ body{
 }
 .pay{
     display: flex;
-}
-
-.name-class{
-    margin: 0 27px 0 0;
-}
-
-/* .surname{
-    margin: 0 8px 0 0;
-} */
-
-
-.street{
-    margin: 0px;
-}
-
-.flat-number{
-    margin: 0 21px 0 0;
-}
-
-.delivery-data{
-    margin: 0 24px 0 0px;
-}
-
-.house-num{
-    margin: 0 5px 0 0;
 }
 
 .button-submit{
@@ -106,7 +73,6 @@ body{
 
 input[type='radio'].invalid{
     outline: 1px solid rgb(226, 92, 92);
-    /* border: 6px solid red; */
 }
 
 table {
@@ -141,7 +107,6 @@ table {
     flex-direction: row;
     align-items: center;
 
-
     font-family: Georgia, serif;
     font-style: normal;
     font-size: 16px;
@@ -165,13 +130,16 @@ table {
     color: rgba(27, 27, 27, 0.903);
 }
 
+.button-delete:hover{
+    cursor: pointer;
+    background: rgba(220, 145, 91, 0.874)
+}
+
 .author-book{
     width: 200px;
 
-
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */
     align-items: center;
 }
 
@@ -208,7 +176,7 @@ table {
 .button-delete-window{
     width: 69px;
     height: 35px;
-    margin: 15 0 0 7px;
+    margin: 15px 0 0 7px;
     background-color: #FAFAFA;
     border: 2px solid rgba(220, 145, 91, 0.874);
     font-size: 16px;
@@ -218,6 +186,11 @@ table {
     font-weight: 100;
     letter-spacing: 0.01em;
     position: relative;
+}
+
+.button-delete-window:hover{
+    cursor: pointer;
+    background-color: rgb(169 86 26 / 87%);
 }
 
 .show-error{
@@ -289,11 +262,9 @@ label {
 
 }
 
-
 *{
   font-family: Georgia, sans-serif;
   font-weight: light;
-  /* -webkit-font-smoothing: antialiased; */
 }
 
  form{
@@ -305,7 +276,7 @@ label {
     border-radius: 40px;
     margin: 40px 0;
 
-}  
+}
 
 input[type="text"]{
     appearance: none;
@@ -330,7 +301,6 @@ input[type="date"]{
     background-color: none;
     font-size: 16px;
     width: 100%;
-    color:rgb(169 86 26 / 87%);
     display: block;
     box-sizing: border-box;
     padding: 10px 15px;
@@ -358,8 +328,6 @@ label:valid{
     width: 17px;
     height: 17px;
     border-radius: 100px;
-
-    /* background:rgba(227, 163, 117, 0.874); */
     position: relative;
     content: '';
 
@@ -390,19 +358,19 @@ input[type='radio']::before {
   }
 
 input[type="radio"]:checked::after{
-        border: 2px solid rgba(169, 109, 66, 0.874);  
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background-color: rgba(227, 163, 117, 0.874);
-        transform: translate(-50%, -50%);
-        visibility: visible;
-      }      
-      
+    border: 2px solid rgba(169, 109, 66, 0.874);
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgba(227, 163, 117, 0.874);
+    transform: translate(-50%, -50%);
+    visibility: visible;
+}
+
 #multiple{
     border-radius: 5px;
     font-family: 'Georgia', sans-serif;
@@ -410,7 +378,7 @@ input[type="radio"]:checked::after{
     font-weight: 400;
     font-size: 15px;
     line-height: 130%;
-    letter-spacing: 0.06em;  
+    letter-spacing: 0.06em;
     background-color: rgba(227, 163, 117, 0.874);
 }
 

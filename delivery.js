@@ -1,4 +1,3 @@
-//  let body = document.querySelector("body");
 let Yname,
     inputForName,
     error,
@@ -37,12 +36,9 @@ let Yname,
 function init(){
     makeMainContent();
     cart = JSON.parse(localStorage.getItem('cart'))
-
-
 }
 
 function makeMainContent(){
-
     let sectionForDelivery = document.createElement("section")
     sectionForDelivery.classList.add("secForDelivery")
     sectionForDelivery.setAttribute("id", "mainDelivery")
@@ -50,27 +46,21 @@ function makeMainContent(){
     let sectionPerData = document.createElement("section")
     sectionPerData.classList.add("secPersonalData")
 
-    //1
     secForname = document.createElement("section")
     secForname.classList.add("section-input")
     secForname.setAttribute("id", "sec-name")
 
     Yname = document.createElement("label")
-    // name.setAttribute("id", "name")
     Yname.setAttribute("for", "name")
     Yname.classList.add("name-class")
-    // Yname.innerText = "Name"
 
     inputForName = document.createElement("input")
     inputForName.setAttribute("type", "text")
     inputForName.setAttribute("placeholder", "Name")
-    // inputForName.setAttribute("pattern", "[a-z]+")
-
 
     secForname.append(Yname)
     secForname.append(inputForName)
 
-    //2
     secForSurname = document.createElement("section")
     secForSurname.classList.add("section-input")
 
@@ -82,7 +72,6 @@ function makeMainContent(){
     inputForSurname.setAttribute("type", "text")
     inputForSurname.setAttribute("for", "surname")
     inputForSurname.setAttribute("placeholder", "Surname")
-    // inputForSurname.setAttribute("type", "submitter")
 
     secForSurname.append(surname)
     secForSurname.append(inputForSurname)
@@ -95,13 +84,11 @@ function makeMainContent(){
     title.classList.add("pay-title")
     title.innerText = "Payment type"
 
-
     let allChoosen = document.createElement("section")
     allChoosen.classList.add("two-radio-button")
     let cardChoosen = document.createElement("section")
 
     let choosenCard = document.createElement("label")
-    // choosenCard.setAttribute("for", "pay")
     choosenCard.classList.add("rad-label")
     choosenCard.innerText = 'Card'
 
@@ -112,15 +99,13 @@ function makeMainContent(){
     inputForCard.setAttribute("id", "pay")
     inputForCard.checked = false
 
-
     cardChoosen.append(choosenCard)
     cardChoosen.append(inputForCard)
 
     let cashChoosen = document.createElement("section")
 
     let choosenCash = document.createElement("label")
-    // choosenCash.setAttribute("for", "pay")
-   
+
     choosenCash.innerText = 'Cash'
 
     inputForCash = document.createElement("input")
@@ -130,14 +115,11 @@ function makeMainContent(){
     inputForCash.setAttribute("id", "pay")
     inputForCash.checked = false
 
-
-
     cashChoosen.append(choosenCash)
     cashChoosen.append(inputForCash)
 
     allChoosen.append(cardChoosen)
     allChoosen.append(cashChoosen)
-
 
     typeOfPay.append(title)
     typeOfPay.append(allChoosen)
@@ -200,13 +182,11 @@ function makeMainContent(){
     let labelDataDeliv = document.createElement("label")
     labelDataDeliv.classList.add("delivery-data")
     labelDataDeliv.setAttribute("for", "date")
-    // labelDataDeliv.innerText = "Delivery date"
 
 
     inputForDataDeliv = document.createElement("input")
     inputForDataDeliv.setAttribute("type", "date")
     inputForDataDeliv.setAttribute("min", "11-04-2023")
-    // inputForDataDeliv.setAttribute("value", "21.01.2002")
 
     dataDeliver.append(labelDataDeliv)
     dataDeliver.append(inputForDataDeliv)
@@ -216,7 +196,6 @@ function makeMainContent(){
 
     let labelStreet = document.createElement("label")
     labelStreet.classList.add("street")
-    // labelStreet.innerText = "Street"
 
     inputStreet = document.createElement("input")
     inputStreet.setAttribute("type", "text")
@@ -230,13 +209,10 @@ function makeMainContent(){
 
     let labelNumHouse = document.createElement("label")
     labelNumHouse.classList.add("house-num")
-    // labelNumHouse.innerText = "House`s number"
 
     inputHouseNum = document.createElement("input")
     inputHouseNum.setAttribute("type", "text")
     inputHouseNum.setAttribute("placeholder", "House`s number")
-    // inputHouseNum.setAttribute("type", "number")
-    // inputHouseNum.setAttribute("min", "0")
 
     numHouse.append(labelNumHouse)
     numHouse.append(inputHouseNum)
@@ -246,10 +222,8 @@ function makeMainContent(){
 
     let labelFlat = document.createElement("label")
     labelFlat.classList.add("flat-number")
-    // labelFlat.innerText = "Flat`s number"
 
     inputFlat = document.createElement("input")
-    // inputFlat.setAttribute("type", "number")
     inputFlat.setAttribute("type", "text")
     inputFlat.setAttribute("min", "0")
     inputFlat.setAttribute("placeholder", "Flat`s number")
@@ -263,8 +237,6 @@ function makeMainContent(){
     buttonSubmit.classList.add("button-submit")
     buttonSubmit.setAttribute("type", "button")
     buttonSubmit.disabled = true
-    // buttonSubmit.addEventListener("click", makeButtonAvaluable)
-
 
     //Add all section in Adress
     adress.append(dataDeliver)
@@ -289,15 +261,10 @@ function makeMainContent(){
     secError = document.createElement("p")
     secError.classList.add("show-error")
     sectionForDelivery.append(secError)
-    // errorForSurname = document.createElement("p")
-    // // secError.innerHTML = "Please enter a valid name"
-    // errorArr = ["Please enter a valid name", "Please enter a valid surname" , ""]
 
     formAction.addEventListener("blur", validBlur, true)
 
-
     sectionForDelivery.append(formAction)
-
 
     document.body.append(sectionForDelivery);
 
@@ -308,7 +275,6 @@ function validationName(e){
 
         if (!regName.test(inputForName.value)) {
             messages.push("Error 1")
-            // error.append(messages)
             if (!inputForName.classList.contains("invalid") && (inputForName == e.target)){
                 inputForName.classList.add("invalid")
                 secError.innerHTML = 'Please enter a valid name'
@@ -324,17 +290,12 @@ function validationName(e){
 
 }
 
-
-
 function validationSurname(e){
     let regSurname = /^[a-z]{5,}$/gi
     if (!regSurname.test(inputForSurname.value)) {
         messages.push("Error 2")
-        //errorForSurname.innerHTML = "Please enter a valid Surname"
-        // secForSurname.append(errorForSurname)
         if (!inputForSurname.classList.contains("invalid") && (inputForSurname == e.target)){
             inputForSurname.classList.add("invalid")
-            // errorForSurname.innerHTML = "Please enter a valid Surname"
             secError.innerHTML = 'Please enter a valid surname'
             console.log(e.target)
     }
@@ -342,7 +303,6 @@ function validationSurname(e){
         if (inputForSurname.classList.contains("invalid")){
             inputForSurname.classList.remove("invalid")
             secError.innerHTML = ''
-            // errorForSurname.remove()
         }
 
     }
@@ -387,7 +347,6 @@ function validationFlat (e){
         let regFlatNum = /^\d+-*\d*$/g
         let check = regFlatNum.test(inputFlat.value)
         if (!check){
-            // console.log(inputFlat.value)
             messages.push("Error 5")
             if (!inputFlat.classList.contains("invalid") && (inputFlat == e.target)){
                 inputFlat.classList.add("invalid")
@@ -425,8 +384,6 @@ function makeButtonAvaluable (){
         buttonSubmit.addEventListener("click", popupOrder)
 
     }
-
-    // e.preventDefault()
 }
 
 function renderCart(){
@@ -440,7 +397,6 @@ function renderCart(){
     cart.list.forEach((book, index) => {
     let itemWraper = document.createElement("section")
     itemWraper.classList.add("text-wraprt")
-    // console.log(books[book])
 
     let imgSec = document.createElement("img")
     imgSec.classList.add("imgCard")
@@ -494,7 +450,6 @@ function renderCart(){
 function checkSelect(e){
     let count = 0
     let options = Array.from(secForPresent.children)
-    // console.log(secForPresent.children)
     options.forEach(option => {
       if (option.selected) count ++
     } )
@@ -508,7 +463,6 @@ function checkSelect(e){
 
 function popupOrder(){
     windowOrder = document.createElement("section")
-    //windowOrder.classList.add("show-window")
 
     title = document.createElement("p")
 
@@ -529,7 +483,6 @@ function popupOrder(){
     windowOrder.append(customer)
     windowOrder.append(deleteButton)
 
-
     document.body.append(windowOrder)
     setData()
 
@@ -545,7 +498,6 @@ function setData(){
     showWin()
 
 }
-
 
 function validBlur(e){
     messages = []
