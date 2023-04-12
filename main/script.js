@@ -322,7 +322,7 @@ function renderCart(){
 
 function createOrder(){
     localStorage.setItem("cart", JSON.stringify({list:cart}));
-    window.location.href = "delivery.html"
+    window.location.href = "../delivery/delivery.html"
 }
 
 
