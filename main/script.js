@@ -325,8 +325,4 @@ function createOrder(){
     window.location.href = "../delivery/delivery.html"
 }
 
-
-
-
-
 window.onload = init;
