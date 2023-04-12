@@ -5,11 +5,6 @@ body{
 
 }
 
-/* * {
-    margin: 0;
-    padding: 0;
-} */
-
 .main{
     width: 1280px;
     position: relative;
@@ -35,9 +30,6 @@ body{
     justify-content: flex-end;
     align-items: center;
     padding-top: 50px;
-
-
-
 }
 
 .section-bag .list{
@@ -99,22 +91,13 @@ body{
     color: rgba(79, 67, 67, 90%);
 }
 
-.logo-shop{
-    width: 250px;
-    height: 60px;
-
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-
-}
-
 .title-shop{
     font-family: Georgia, serif;
     font-style: normal;
     font-size: 32px;
     line-height: 35px;
     text-align: center;
+    margin: 0;
 
     color: rgb(210,105,30);
 }
@@ -122,11 +105,10 @@ body{
 .subtitle-logo{
     font-family: Arial, serif;
     font-style: normal;
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 15px;
+    line-height: 20px;
     color: rgba(27, 27, 27, 0.903);
-
-    margin: 0 0 0 -67px;
+    margin: 0;
 
 }
 
@@ -164,8 +146,6 @@ body{
     grid-template-rows: repeat(3, 485px);
     justify-items: center;
     gap: 1em;
-
-
 }
 
 .book-card{
@@ -255,6 +235,11 @@ body{
 
 }
 
+.show-more:hover{
+    cursor: pointer;
+    background: rgba(204, 184, 170, 0.874);
+}
+
 .add-bag {
     width: 83px ;
     height: 30px;
@@ -271,26 +256,30 @@ body{
 
 }
 
+.add-bag:hover{
+    cursor: pointer;
+    background: rgba(204, 184, 170, 0.874);
+}
+
 .modal-win{
     display: none;
 }
 
 .show-win{
-    width: 450px;
-    height: 250px;
+    width: 500px;
+    height: 290px;
     z-index: 2;
     overflow: hidden;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     background: rgba(227, 163, 117, 0.874);
-    ;
+
     border-radius: 9px;
     position: fixed;
-    /* top: 20%;
-    left: 20%; */
+    top: 21%;
 
     font-family: 'Georgia', sans-serif;
     font-style: normal;
@@ -306,6 +295,7 @@ body{
 .modal-button{
     width: 83px ;
     height: 30px;
+    margin: 0 0 0 20px;
 
     background: #FAFAFA;
     border-radius: 100px;
@@ -318,6 +308,11 @@ body{
     color: rgba(27, 27, 27, 0.903);
 }
 
+.modal-button:hover{
+    cursor: pointer;
+    background: rgba(204, 184, 170, 0.874);
+}
+
 .button-delete{
     width: 10px;
     height: 20px;
@@ -327,15 +322,6 @@ body{
     background: rgba(227, 163, 117, 0.874);
 
 }
-
-/* .overlay{
-    background: rgba(41, 41, 41, 0.6);
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-} */
 
 .imgCardForBag{
     width: 100px;
@@ -376,7 +362,7 @@ body{
 
 .button-delete:hover{
     cursor: pointer;
-    background:  rgba(204, 184, 170, 0.874);
+    background: rgba(204, 184, 170, 0.874);
 
 }
 
@@ -408,6 +394,25 @@ body{
     cursor: pointer;
     background: rgba(204, 184, 170, 0.874);
 
+}
+
+
+.name-book-mod{
+    margin: 25px 0 0 50px;
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+}
+
+.describe-book{
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 25px;
+    color: rgba(27, 27, 27, 0.903);
+    margin: 15px 0 10px 20px
 }
 
 

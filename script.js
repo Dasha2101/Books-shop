@@ -8,16 +8,11 @@ let modalWin,
     buttonSM,
     overlay,
     list,
-    footer,
     bagBook,
     buttonDelete,
     cart = []
     drag_id = -1,
     bagBook
-    // buttonDelete
-    // listId
-
-
 
 function init(){
     let main = makeMain();
@@ -25,7 +20,6 @@ function init(){
     let mainSection = makeSectionForBook();
     let pageBook = book();
     let content = makeHeaderContent();
-    // modalWin = popup();
 
     pageBook.append(mainSection);
 
@@ -66,33 +60,21 @@ function makeHeader() {
     let headerContent = document.createElement("section")
     headerContent.classList.add("header-content")
 
-    let greetings = document.createElement("h1")
-    greetings.classList.add("header-title")
-    greetings.innerText = "WELCOME"
-
     let listId = document.createElement("ul")
     listId.classList.add("list")
 
-    // buttonDelete = document.createElement("button")
-    // buttonDelete.classList.add("button-delete")
-    // listId.append(buttonDelete)
-
     headerContent.append(listId);
 
-    let logoShop = document.createElement("div")
-    logoShop.classList.add("logo-shop")
+    let sectionLogo = document.createElement("section")
+    sectionLogo.classList.add("logo")
 
     let subtitleLogo = document.createElement("p")
     subtitleLogo.classList.add("subtitle-logo")
-    subtitleLogo.innerText = "Online book`s store"
+    subtitleLogo.innerText = "Welcome to onlne book`s store"
 
     let title = document.createElement("h2")
     title.classList.add("title-shop")
     title.innerText = "BOOK SHOP"
-
-    // bagBook = document.createElement("section")
-    // bagBook.classList.add("bag-for-book")
-    // bagBook.ondrop = drop
 
     let sectionBag = document.createElement("section")
     sectionBag.classList.add("section-bag")
@@ -101,39 +83,24 @@ function makeHeader() {
     bagBook = document.createElement("img")
     bagBook.src = "free-icon-basket-3081797.png"
 
-    // bagBook.append(listId)
-
     bagBook.ondrop = drop
-
-
-
-    // bagBook.addEventListener("click", showList)
 
     bagBook.addEventListener("dragover", (event) => {
         event.preventDefault();
       });
 
-
     headerContent.append(bagBook)
 
-    logoShop.append(subtitleLogo)
-    logoShop.append(greetings)
+    sectionLogo.append(title)
+    sectionLogo.append(subtitleLogo)
 
-    headerContent.append(title)
-    headerContent.append(logoShop)
+    headerContent.append(sectionLogo)
     sectionBag.append(listId)
     sectionBag.append(bagBook)
     headerContent.append(sectionBag)
 
     return headerContent
  }
-
-//  function showList(){
-//     let listId = document.querySelectorAll(".list")
-
-//  }
-
-
 
 function book(){
     let pageBook = document.createElement("section")
@@ -184,18 +151,16 @@ function addBook(book, bookId){
 
     let priceBook = document.createElement("p")
     priceBook.classList.add("price-book")
-    priceBook.innerHTML = "PRICE:" +  " " + book.price
+    priceBook.innerHTML = "<b>" + "Price:" + "</b>" +  " " + book.price
     bookElem.append(priceBook)
 
     let buttonShowMore = document.createElement("button")
     buttonShowMore.classList.add("show-more")
     buttonShowMore.innerText = "Show more"
-    // bookElem.append(buttonShowMore)
 
     let addBookBag = document.createElement("button")
     addBookBag.classList.add("add-bag")
     addBookBag.innerText = "Add bag"
-    // bookElem.append(addBookB`ag)
 
     sectionForButton.append(buttonShowMore)
     sectionForButton.append(addBookBag)
@@ -218,22 +183,16 @@ function popup(book){
     describeBook.classList.add("describe-book")
     describeBook.innerHTML = book.description
 
-    // nameBook = document.createElement("h3")
-    // nameBook.classList.add("name-book")
-    // nameBook.innerHTML = book.title
+    let nameBookMod = document.createElement("h3")
+    nameBookMod.classList.add("name-book-mod")
+    nameBookMod.innerHTML = book.title
 
     buttonMD = document.createElement("button")
     buttonMD.classList.add("modal-button")
     buttonMD.innerText = "Close"
-    modalWin.append( describeBook, buttonMD)
+    modalWin.append( nameBookMod, describeBook, buttonMD)
 
     buttonMD.addEventListener("click", closeModalWin)
-
-    overlay = document.createElement('section')
-    overlay.classList.add("overlay")
-    // document.body.append(overlay)
-
-    // overlay.addEventListener("click", removeOverlay)
 
     return modalWin
 }
@@ -248,7 +207,6 @@ function initModalWin(){
 function showModalWin(id){
     return function(){
         modals.item(id).classList.add("show-win")
-        // overlay.classList.add("overlay");
         document.getElementsByTagName("body")[0].style.overflow = 'hidden';
     }
 }
@@ -300,7 +258,6 @@ function renderCart(){
     buttonDelete.innerText = "X"
 
     let summa = 0
-    // books.forEach(e => summa += Number.parseFloat(e.price))
     list.innerHTML = ' ';
     let index = 0
     for (elem of cart){
