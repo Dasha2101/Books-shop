@@ -57,13 +57,13 @@ function makeMainContent(){
 
     Yname = document.createElement("label")
     // name.setAttribute("id", "name")
+    Yname.setAttribute("for", "name")
     Yname.classList.add("name-class")
-    Yname.innerText = "Name"
+    // Yname.innerText = "Name"
 
     inputForName = document.createElement("input")
-    inputForName.setAttribute("id", "name")
-    inputForName.setAttribute("name", "name")
     inputForName.setAttribute("type", "text")
+    inputForName.setAttribute("placeholder", "Name")
     // inputForName.setAttribute("pattern", "[a-z]+")
 
 
@@ -76,34 +76,40 @@ function makeMainContent(){
 
     surname = document.createElement("label")
     surname.classList.add("surname")
-    surname.innerText = "Surname"
 
     inputForSurname = document.createElement("input")
-    inputForSurname.setAttribute("id", "surname")
-    inputForSurname.setAttribute("type", "submitter")
+
+    inputForSurname.setAttribute("type", "text")
+    inputForSurname.setAttribute("for", "surname")
+    inputForSurname.setAttribute("placeholder", "Surname")
+    // inputForSurname.setAttribute("type", "submitter")
 
     secForSurname.append(surname)
     secForSurname.append(inputForSurname)
 
     //3
     typeOfPay = document.createElement("section")
+    typeOfPay.setAttribute("id", "allchoos")
 
     let title = document.createElement("p")
+    title.classList.add("pay-title")
     title.innerText = "Payment type"
 
-    let allChoosen = document.createElement("section")
-    allChoosen.classList.add("all-choosen")
 
+    let allChoosen = document.createElement("section")
+    allChoosen.classList.add("two-radio-button")
     let cardChoosen = document.createElement("section")
 
     let choosenCard = document.createElement("label")
     // choosenCard.setAttribute("for", "pay")
+    choosenCard.classList.add("rad-label")
     choosenCard.innerText = 'Card'
 
     inputForCard = document.createElement("input")
     inputForCard.setAttribute("type", "radio")
     inputForCard.setAttribute("value", "card")
     inputForCard.setAttribute("name", "pay")
+    inputForCard.setAttribute("id", "pay")
     inputForCard.checked = false
 
 
@@ -114,12 +120,14 @@ function makeMainContent(){
 
     let choosenCash = document.createElement("label")
     // choosenCash.setAttribute("for", "pay")
+   
     choosenCash.innerText = 'Cash'
 
     inputForCash = document.createElement("input")
     inputForCash.setAttribute("type", "radio")
     inputForCash.setAttribute("value", "cash")
     inputForCash.setAttribute("name", "pay")
+    inputForCash.setAttribute("id", "pay")
     inputForCash.checked = false
 
 
@@ -135,8 +143,16 @@ function makeMainContent(){
     typeOfPay.append(allChoosen)
 
     //4
+
+    sectionForPressentAndTtile = document.createElement("section")
     secForPresent = document.createElement("select")
+
+    titlePresent = document.createElement("p")
+    titlePresent.classList.add("title-present")
+    titlePresent.innerHTML = "Choose two gifts"
+
     secForPresent.setAttribute("multiple", "multiple")
+    secForPresent.setAttribute("id", "multiple")
 
     secForPresent.addEventListener("change", checkSelect)
 
@@ -164,12 +180,14 @@ function makeMainContent(){
     secForPresent.append(secSale)
     secForPresent.append(secPen)
 
+    sectionForPressentAndTtile.append(titlePresent)
+    sectionForPressentAndTtile.append(secForPresent)
     //Add all section in sectionPerData
 
     sectionPerData.append(secForname)
     sectionPerData.append(secForSurname)
     sectionPerData.append(typeOfPay)
-    sectionPerData.append(secForPresent)
+    sectionPerData.append(sectionForPressentAndTtile)
 
     //Adress
     let adress = document.createElement("section")
@@ -182,7 +200,8 @@ function makeMainContent(){
     let labelDataDeliv = document.createElement("label")
     labelDataDeliv.classList.add("delivery-data")
     labelDataDeliv.setAttribute("for", "date")
-    labelDataDeliv.innerText = "Delivery date"
+    // labelDataDeliv.innerText = "Delivery date"
+
 
     inputForDataDeliv = document.createElement("input")
     inputForDataDeliv.setAttribute("type", "date")
@@ -197,10 +216,11 @@ function makeMainContent(){
 
     let labelStreet = document.createElement("label")
     labelStreet.classList.add("street")
-    labelStreet.innerText = "Street"
+    // labelStreet.innerText = "Street"
 
     inputStreet = document.createElement("input")
-    inputStreet.setAttribute("type", "submitter")
+    inputStreet.setAttribute("type", "text")
+    inputStreet.setAttribute("placeholder", "Street")
 
     street.append(labelStreet)
     street.append(inputStreet)
@@ -210,9 +230,11 @@ function makeMainContent(){
 
     let labelNumHouse = document.createElement("label")
     labelNumHouse.classList.add("house-num")
-    labelNumHouse.innerText = "House`s number"
+    // labelNumHouse.innerText = "House`s number"
 
     inputHouseNum = document.createElement("input")
+    inputHouseNum.setAttribute("type", "text")
+    inputHouseNum.setAttribute("placeholder", "House`s number")
     // inputHouseNum.setAttribute("type", "number")
     // inputHouseNum.setAttribute("min", "0")
 
@@ -224,11 +246,13 @@ function makeMainContent(){
 
     let labelFlat = document.createElement("label")
     labelFlat.classList.add("flat-number")
-    labelFlat.innerText = "Flat`s number"
+    // labelFlat.innerText = "Flat`s number"
 
     inputFlat = document.createElement("input")
     // inputFlat.setAttribute("type", "number")
+    inputFlat.setAttribute("type", "text")
     inputFlat.setAttribute("min", "0")
+    inputFlat.setAttribute("placeholder", "Flat`s number")
 
     secFlatNumber.append(labelFlat)
     secFlatNumber.append(inputFlat)
@@ -273,7 +297,7 @@ function makeMainContent(){
 
 
     sectionForDelivery.append(formAction)
-    popupOrder()
+
 
     document.body.append(sectionForDelivery);
 
@@ -292,6 +316,7 @@ function validationName(e){
         } else {
                 if (inputForName.classList.contains("invalid")){
                     inputForName.classList.remove("invalid")
+                    inputForName.classList.add("label:valid")
                     secError.innerHTML = ''
 
         }
@@ -397,7 +422,7 @@ function validationDate (e){
 function makeButtonAvaluable (){
     if (!messages.length){
         buttonSubmit.disabled = false
-        buttonSubmit.addEventListener("click", setData)
+        buttonSubmit.addEventListener("click", popupOrder)
 
     }
 
@@ -425,16 +450,20 @@ function renderCart(){
     buttonDelete.classList.add("button-delete")
     buttonDelete.innerText = "X"
 
+    let infoBooks = document.createElement("section")
+    infoBooks.classList.add("info-books-order")
+
     let authorBook = document.createElement("section")
     authorBook.classList.add("author-book")
-    authorBook.innerText +=  books[book].author
+    authorBook.innerHTML = "<b>" + "Author:" + "</b>" + " " + books[book].author
 
     let titleBook = document.createElement("section")
     titleBook.classList.add("title-author")
-    titleBook.innerText += books[book].title
+    titleBook.innerHTML = "<b>" + "Title:" + "</b>" + " " + books[book].title
+
 
     let priceBook = document.createElement("section")
-    priceBook.innerText += `Price:"  ${books[book].price}`
+    priceBook.innerHTML += "<b>" + "Price:" + "</b>" + " " + books[book].price
 
 
     buttonDelete.onclick = () => {
@@ -445,16 +474,20 @@ function renderCart(){
     }
 
     Allprice += books[book].price
-    authorBook.append(buttonDelete)
 
-    itemWraper.append(authorBook)
+    infoBooks.append(authorBook)
+    infoBooks.append(titleBook)
+    infoBooks.append(priceBook)
+    infoBooks.append(buttonDelete)
+
     itemWraper.append(imgSec)
-    itemWraper.append(priceBook)
-    itemWraper.append(titleBook)
+    itemWraper.append(infoBooks)
+
     secForBook.append(itemWraper)
 })
     let totalPrice = document.createElement('span')
-    totalPrice.innerText = `Total: ${Allprice}`
+    totalPrice.classList.add("total-price")
+    totalPrice.innerHTML = "<b>" + "Total price:" + "</b>" + " " +  Allprice
     secForBook.append(totalPrice)
 }
 
@@ -475,7 +508,7 @@ function checkSelect(e){
 
 function popupOrder(){
     windowOrder = document.createElement("section")
-    // windowOrder.classList.add("show-window")
+    //windowOrder.classList.add("show-window")
 
     title = document.createElement("p")
 
@@ -485,7 +518,9 @@ function popupOrder(){
     customer = document.createElement("section")
 
     deleteButton = document.createElement("button")
+    deleteButton.classList.add("button-delete-window")
     deleteButton.addEventListener("click", removeModal)
+    deleteButton.innerHTML = "Close"
 
     windowOrder.append(title)
     windowOrder.append(street)
@@ -496,16 +531,16 @@ function popupOrder(){
 
 
     document.body.append(windowOrder)
-    
+    setData()
 
 }
 
 function setData(){
-    title.innerText = "Create order"
-    street.innerHTML = `Delivery address: ${inputStreet.value}`
-    houseNumber.innerHTML = `house:  ${inputHouseNum.value}`
-    flatNumber.innerHTML = `flat:  ${inputFlat.value}`
-    customer.innerHTML = `custumer: ${inputForName.value}  ${inputForSurname.value}`
+    title.innerHTML = "<b>" + "Create order" + "</b>"
+    street.innerHTML =  "<b>" + "Delivery address:" + "</b>" + " " + inputStreet.value
+    houseNumber.innerHTML = "<b>" + "House:" + "</b>" + " " +  inputHouseNum.value
+    flatNumber.innerHTML = "<b>" + "Flat" + "</b>" + " " + inputFlat.value
+    customer.innerHTML = "<b>" + "Customer:" + "</b>" + " " + inputForName.value + " " + inputForSurname.value
     console.log(title)
     showWin()
 
