@@ -307,12 +307,19 @@ function renderCart(){
 
         let itemWraper = document.createElement("section")
         itemWraper.classList.add("text-wraprt")
-        itemWraper.innerText =  books[elem].author
+
+        let secInfo = document.createElement("section")
+        secInfo.classList.add("sec-info")
+
+        let secAuthor = document.createElement("p")
+        secAuthor.innerHTML = "<b>" + "Author:" + "</b>" + " " + books[elem].author
+
         let buttonDelete = document.createElement("button")
         buttonDelete.classList.add("button-delete")
         buttonDelete.innerText = "X"
+
         let titleBook = document.createElement("section")
-        titleBook.innerText = books[elem].title
+        titleBook.innerHTML = "<b>" + "Title:" + "</b>" + " " + books[elem].title
 
         let imgSec = document.createElement("img")
         imgSec.classList.add("imgCardForBag")
@@ -325,24 +332,31 @@ function renderCart(){
             renderCart()
         }
 
-        itemWraper.append(imgSec)
-        itemWraper.append(buttonDelete)
-        itemWraper.append(titleBook)
         list.append(itemWraper)
         let price = document.createElement("section")
-        price.innerText = "Price:" + " " + books[elem].price
+        price.innerHTML = "<b>" + "Price:" + "</b>" + " " + books[elem].price
         summa +=  books[elem].price
-        itemWraper.append(price)
-        // index++
 
-    //     list.innerHTML += ("<li>" + " " + "<b>Author:</b>"  + books[elem].author + " " + "<button>X</button>" + "<br>" + 
-    //  "<b>title:</b>" + " " + books[elem].title + "<br>" + "<b>price:</b>" + books[elem].price + "<br>" )
+        secInfo.append(secAuthor)
+        secInfo.append(titleBook)
+
+        secInfo.append(price)
+        secInfo.append(buttonDelete)
+
+        itemWraper.append(imgSec)
+        itemWraper.append(secInfo)
+
+        itemWraper.append(imgSec)
+        itemWraper.append(secInfo)
+
     }
     let Allprice = document.createElement("section")
-    Allprice.innerText = "Total of money:" + " " + summa
+    Allprice.classList.add("total-money")
+    Allprice.innerHTML = "<b>" + "Total of money:" + "</b>" + " " + summa
 
     let buttonCreateOrder = document.createElement("button")
     buttonCreateOrder.classList.add("button-order")
+    buttonCreateOrder.innerHTML = "Create order"
     buttonCreateOrder.addEventListener("click", createOrder)
 
     list.append(Allprice)

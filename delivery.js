@@ -37,7 +37,6 @@ let Yname,
 function init(){
     makeMainContent();
     cart = JSON.parse(localStorage.getItem('cart'))
-    popupOrder()
 
 
 }
@@ -274,6 +273,7 @@ function makeMainContent(){
 
 
     sectionForDelivery.append(formAction)
+    popupOrder()
 
     document.body.append(sectionForDelivery);
 
@@ -398,6 +398,7 @@ function makeButtonAvaluable (){
     if (!messages.length){
         buttonSubmit.disabled = false
         buttonSubmit.addEventListener("click", setData)
+
     }
 
     // e.preventDefault()
@@ -484,6 +485,7 @@ function popupOrder(){
     customer = document.createElement("section")
 
     deleteButton = document.createElement("button")
+    deleteButton.addEventListener("click", removeModal)
 
     windowOrder.append(title)
     windowOrder.append(street)
@@ -494,7 +496,7 @@ function popupOrder(){
 
 
     document.body.append(windowOrder)
-
+    
 
 }
 
@@ -506,12 +508,8 @@ function setData(){
     customer.innerHTML = `custumer: ${inputForName.value}  ${inputForSurname.value}`
     console.log(title)
     showWin()
+
 }
-
-
-
-
-
 
 
 function validBlur(e){
@@ -529,6 +527,10 @@ function validBlur(e){
 function showWin(){
     windowOrder.classList.add("show-window")
 
+}
+
+function removeModal(){
+    windowOrder.style.display = "none"
 }
 
 
