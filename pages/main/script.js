@@ -6,6 +6,7 @@ let modalWin,
     nameBook,
     modals,
     buttonSM,
+    mainElem,
     overlay,
     list,
     bagBook,
@@ -44,7 +45,7 @@ function init(){
 }
 
 function makeMain(){
-    let mainElem = document.createElement("div")
+    mainElem = document.createElement("div")
     mainElem.classList.add('main')
     return mainElem
 }
@@ -183,6 +184,9 @@ function popup(book){
     describeBook.classList.add("describe-book")
     describeBook.innerHTML = book.description
 
+    overlay = document.createElement("section")
+    overlay.addEventListener("click" , showModalWin)
+
     let nameBookMod = document.createElement("h3")
     nameBookMod.classList.add("name-book-mod")
     nameBookMod.innerHTML = book.title
@@ -190,10 +194,17 @@ function popup(book){
     buttonMD = document.createElement("button")
     buttonMD.classList.add("modal-button")
     buttonMD.innerText = "Close"
-    modalWin.append( nameBookMod, describeBook, buttonMD)
+    modalWin.append( nameBookMod, describeBook, buttonMD, overlay)
 
+    document.body.click(function (e) {
+        if ((e.target).classList.add('.show-win')) {
+            closeModalWin();
+        }
+    })
+    // document.addEventListener( 'click', closeModalWin) 
+    modalWin.addEventListener("click", closeModalWin)
     buttonMD.addEventListener("click", closeModalWin)
-
+    showModalWin()
     return modalWin
 }
 
@@ -207,6 +218,8 @@ function initModalWin(){
 function showModalWin(id){
     return function(){
         modals.item(id).classList.add("show-win")
+        // overlay.classList.add("overlay")
+        // document.getElementsByTagName("body")[0].classList.add("overlay")
         document.getElementsByTagName("body")[0].style.overflow = 'hidden';
     }
 }

@@ -363,8 +363,13 @@ function validationFlat (e){
 
 function validationDate (e){
     let a = new Date()
-    let date = inputForDataDeliv.value.split('-')
-    if ((String(a.getFullYear() == date[0]) && String(a.getMonth() == date[1]) && String(a.getDate() + 1) > date[2]  || date[0] == [] || date[1] == []  || date ==[])) {
+    a = new Date(a.getFullYear(), a.getMonth(), a.getDate())
+    // let date = inputForDataDeliv.value.split('-')
+    let date = new Date(inputForDataDeliv.value)
+    a.setDate(a.getDate() + 1)
+    console.log(a)
+    console.log(date)
+    if (a > date){
         messages.push("Error 6")
         if (!inputForDataDeliv.classList.contains("invalid") && (inputForDataDeliv == e.target)){
             inputForDataDeliv.classList.add("invalid")
