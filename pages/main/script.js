@@ -21,6 +21,9 @@ function init(){
     let mainSection = makeSectionForBook();
     let pageBook = book();
     let content = makeHeaderContent();
+    overlay = document.createElement("section");
+    overlay.classList.remove("overlay")
+    document.body.append(overlay);
 
     pageBook.append(mainSection);
 
@@ -42,7 +45,9 @@ function init(){
     modals = document.querySelectorAll(".modal-win")
     initModalWin()
     makeEventAddBook()
+
 }
+
 
 function makeMain(){
     mainElem = document.createElement("div")
@@ -184,8 +189,8 @@ function popup(book){
     describeBook.classList.add("describe-book")
     describeBook.innerHTML = book.description
 
-    overlay = document.createElement("section")
-    overlay.addEventListener("click" , showModalWin)
+    overlay.classList.add("overlay")
+    overlay.addEventListener("click", removeOverlay)
 
     let nameBookMod = document.createElement("h3")
     nameBookMod.classList.add("name-book-mod")
@@ -194,14 +199,8 @@ function popup(book){
     buttonMD = document.createElement("button")
     buttonMD.classList.add("modal-button")
     buttonMD.innerText = "Close"
-    modalWin.append( nameBookMod, describeBook, buttonMD, overlay)
+    modalWin.append(nameBookMod, describeBook, buttonMD)
 
-    document.body.click(function (e) {
-        if ((e.target).classList.add('.show-win')) {
-            closeModalWin();
-        }
-    })
-    // document.addEventListener( 'click', closeModalWin) 
     modalWin.addEventListener("click", closeModalWin)
     buttonMD.addEventListener("click", closeModalWin)
     showModalWin()
@@ -218,14 +217,29 @@ function initModalWin(){
 function showModalWin(id){
     return function(){
         modals.item(id).classList.add("show-win")
-        // overlay.classList.add("overlay")
-        // document.getElementsByTagName("body")[0].classList.add("overlay")
+        overlay.classList.remove("overlay")
+        overlay.classList.add("act-overlay");
         document.getElementsByTagName("body")[0].style.overflow = 'hidden';
     }
+
+}
+
+function removeOverlay(){
+    Array.from(document.getElementsByClassName("show-win")).forEach( (e) =>{
+        e.classList.remove("show-win")
+    })
+    overlay.classList.remove("act-overlay")
+    overlay.classList.add("overlay");
+    document.getElementsByTagName("body")[0].style.overflow = 'scroll'
 }
 
 function closeModalWin(e){
-    e.target.closest(".show-win").classList.remove("show-win");
+    Array.from(document.getElementsByClassName("show-win")).forEach( (e) =>{
+        e.classList.remove("show-win")
+    })
+    overlay.classList.remove("act-overlay")
+    overlay.classList.add("overlay");
+
     document.getElementsByTagName("body")[0].style.overflow = 'scroll'
 }
 
